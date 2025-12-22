@@ -1,0 +1,15 @@
+<template>
+        <lightning-card  variant="Narrow"  title={userName} icon-name="utility:adjust_value">
+            <div class="slds-p-around_small">
+                <lightning-input type="date" name="input1" label="Start Date" value={startDate} onchange={handleDate}></lightning-input>
+                <lightning-input type="date" name="input2" label="End Date" value={endDate} onchange={handleDate}></lightning-input>
+                <lightning-combobox name="progress" label="Status" value={tnxType} placeholder="Type of Transaction" options={Tnxoptions}
+                        onchange={handleTypTranx} required></lightning-combobox>
+            </div>
+            <p slot="footer">
+                <lightning-button label="Next" title="next" onclick={handleNext} class="slds-m-left_x-small"></lightning-button>
+            </p>
+        </lightning-card>
+
+        <c-expenses-chartjs start-date={startDate} end-date={endDate} loggedin-user-id={userId}></c-expenses-chartjs>
+</template>

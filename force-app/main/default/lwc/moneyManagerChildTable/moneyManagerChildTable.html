@@ -1,0 +1,80 @@
+<template>
+    <template if:true={isActiveTab}>
+        <lightning-spinner if:true={isLoading} alternative-text="Loading" size="large"></lightning-spinner>
+        <div class="c-container">
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item size="4" padding="around-small">
+                    <div class="custom-box slds-box slds-p-around_small slds-text-align_center slds-text-heading_medium">
+                        <p class="field-title" title="Income">Income</p>
+                        <p><lightning-formatted-number value={income} format-style="currency" currency-code="INR"></lightning-formatted-number></p>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <div class="custom-box slds-box slds-p-around_small slds-text-align_center slds-text-heading_medium">
+                        <p class="field-title" title="Field 3">Expenses</p>
+                        <p><lightning-formatted-number value={expense} format-style="currency" currency-code="INR"></lightning-formatted-number></p>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <div class="custom-box slds-box slds-p-around_small slds-text-align_center slds-text-heading_medium">
+                        <p class="field-title" title="Field 3">Balance</p>
+                        <p><lightning-formatted-number value={balance} format-style="currency" currency-code="INR"></lightning-formatted-number></p>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <br>
+        <lightning-card title={typeofTab}>
+            <div if:true={isAllTimeTab} slot="actions">
+                <lightning-button-group>
+                    <lightning-button label="Create New" disabled></lightning-button>
+                    <lightning-button label="Edit" disabled></lightning-button>
+                    <lightning-button label="Save" disabled></lightning-button>
+                </lightning-button-group>
+            </div>
+            <div if:true={isYearlyTab} slot="actions">
+                <lightning-combobox
+                    name="Years"
+                    label="Year"
+                    value={yearVal}
+                    placeholder="Select Year"
+                    options={yearOptions}
+                    onchange={handleYearChange}>
+                </lightning-combobox>
+            </div>
+            <div if:true={isMonthlyTab} slot="actions">
+                <lightning-layout>
+                    <lightning-layout-item size="auto" padding="around-small">
+                        <lightning-combobox
+                            name="Years"
+                            label="Year"
+                            value={yearVal}
+                            options={yearOptions}
+                            onchange={handleYearChange}>
+                        </lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="auto" padding="around-small">
+                        <lightning-combobox
+                            name="Months"
+                            label="Month"
+                            value={monthVal}
+                            options={monthOptions}
+                            onchange={handleMonthChange}>
+                        </lightning-combobox>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+            <lightning-datatable
+                show-row-number-column
+                key-field="id"
+                columns={columns}
+                data={data}
+                hide-checkbox-column
+                default-sort-direction={defaultSortDirection}
+                sorted-direction={sortDirection}
+                sorted-by={sortedBy}
+                onsort={onHandleSort}>
+            </lightning-datatable>
+        </lightning-card>
+    </template>
+</template>
