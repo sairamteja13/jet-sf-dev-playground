@@ -15,8 +15,5 @@ public with sharing class MoneyManagerController {
 
         transactionList =  Database.query(query);
         return transactionList;
-
-        // return [Select Transaction_Date__c,Transaction_Amount__c,Category__c,Description__c,Type_of_Transaction__c
-        // FROM Transaction__c ];
     }
 }
