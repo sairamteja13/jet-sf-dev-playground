@@ -81,4 +81,22 @@ for (Reports.GroupingValue groupingVal : groupings) {
             finalData.add(rowData);
         }
     }
+
+    DateTime scheduledTime = System.now().addMinutes(1);
+
+    // Extract the individual time components
+    String second = String.valueOf(scheduledTime.second());
+    String minute = String.valueOf(scheduledTime.minute());
+    String hour = String.valueOf(scheduledTime.hour());
+    String dayOfMonth = String.valueOf(scheduledTime.day());
+    String month = String.valueOf(scheduledTime.month());
+    String year = String.valueOf(scheduledTime.year());
+
+    // Construct the cron expression string
+    // The format is: Seconds Minutes Hours Day_of_month Month Day_of_week Optional_year
+    // Use '?' for Day_of_week when Day_of_month is specified
+    String cronExpression = second + ' ' + minute + ' ' + hour + ' ' + dayOfMonth + ' ' + month + ' ? ' + year;
+
+    MoneyManager_PDFNotification myJob = new MoneyManager_PDFNotification();
+    System.schedule('Run Once Job Name', cronExpression, myJob);
 }

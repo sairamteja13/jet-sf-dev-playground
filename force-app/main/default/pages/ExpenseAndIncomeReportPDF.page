@@ -1,0 +1,26 @@
+<apex:page controller="MoneyManagerController" showHeader="false" sidebar="false">
+    <head>
+        <style>
+            body { font-family: 'Arial Unicode MS'; }
+        </style> 
+    </head>
+    <body>
+
+        <apex:sectionHeader title="Expense and Income Report" subtitle="Last one year data"/>
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!ExpenseData}" var="record">
+                <apex:column headerValue="Category" value="{!record.Category__c}"/>
+                <apex:column headerValue="Amount" value="{!record.Transaction_Amount}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </body>
+    <!-- <apex:chart height="400" width="700" data="{!data}">
+    	  <apex:axis type="Numeric" position="left" fields="data1" 
+            title="Opportunities Closed" grid="true"/>
+    	  <apex:axis type="Category" position="bottom" fields="name" 
+            title="Month of the Year">
+    	</apex:axis>
+    	<apex:lineSeries axis="left" fill="true" xField="name" yField="data1"
+          markerType="cross" markerSize="4" markerFill="#FF0000"/>
+   </apex:chart> -->
+</apex:page>

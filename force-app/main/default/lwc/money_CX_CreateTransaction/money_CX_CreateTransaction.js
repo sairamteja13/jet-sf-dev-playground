@@ -12,10 +12,6 @@ export default class Money_CX_CreateTransaction extends LightningElement {
     date = DATE_FIELD;
     type = TYPE_FIELD;
     description = DESCRIPTION_FIELD;
-    // amount;
-    // date;
-    // type;
-    // description;
     userId = userId;
 
     handleChange(event) {
@@ -33,7 +29,6 @@ export default class Money_CX_CreateTransaction extends LightningElement {
 
     handleSubmit(event) {
         const transactionId = event.detail.id;
-        console.log('Transaction created with Id: ' + transactionId);    
         this.dispatchEvent(
             new ShowToastEvent({
                 title: 'Success',
